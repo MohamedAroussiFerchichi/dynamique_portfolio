@@ -1,14 +1,23 @@
 <?php
+// Démarrer la session (utile si on veut utiliser des variables de session)
 session_start();
+
+// Inclure la configuration de connexion à la base de données
 require_once 'db.php';
+
+// Initialiser les variables pour afficher des messages à l'utilisateur
 $success = '';
 $error   = '';
 
+// Vérifier si le formulaire a été soumis via la méthode POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // 1. Récupération et nettoyage des données soumises
+    // mysqli_real_escape_string protège contre les injections SQL
     $username = trim(mysqli_real_escape_string($conn, $_POST['username']));
     $password = $_POST['password'];
     $confirm  = $_POST['confirm'];
 
+    // 2. Validation des données
     if (strlen($username) < 3) {
         $error = "Le nom d'utilisateur doit comporter au moins 3 caractères.";
     } elseif (strlen($password) < 6) {
@@ -16,13 +25,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($password !== $confirm) {
         $error = "Les mots de passe ne correspondent pas.";
     } else {
-        // Check if username already taken
+        // 3. Vérification de l'existence du nom d'utilisateur
+        // On cherche si le pseudo existe déjà dans la table admin
         $check = mysqli_query($conn, "SELECT id FROM admin WHERE username='$username'");
         if (mysqli_num_rows($check) > 0) {
             $error = "Ce nom d'utilisateur est déjà pris.";
         } else {
+            // 4. Création et sécurisation du compte
+            // HASHAge du mot de passe : on ne stocke JAMAIS un mot de passe en clair dans la BDD
             $hashed = password_hash($password, PASSWORD_DEFAULT);
+            
+            // Préparation de la requête pour insérer le nouvel administrateur
             $sql    = "INSERT INTO admin (username, password) VALUES ('$username', '$hashed')";
+            
+            // Exécution de la requête
             if (mysqli_query($conn, $sql)) {
                 $success = "Compte créé avec succès ! Vous pouvez maintenant vous connecter.";
             } else {
@@ -32,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

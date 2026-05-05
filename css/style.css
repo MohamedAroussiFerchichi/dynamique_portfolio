@@ -105,6 +105,10 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  -webkit-border-radius: var(--radius-sm);
+  -moz-border-radius: var(--radius-sm);
+  -ms-border-radius: var(--radius-sm);
+  -o-border-radius: var(--radius-sm);
 }
 
 .nav-links a:hover,
@@ -173,6 +177,10 @@ nav {
   margin-bottom: 1.5rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
 }
 
 .hero h1 {
@@ -400,8 +408,9 @@ nav {
   line-height: 1.65;
   margin-bottom: 1rem;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  line-clamp: 3;
+  box-orient: vertical;
   overflow: hidden;
 }
 

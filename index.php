@@ -1,27 +1,36 @@
 <?php
+// Démarrage de la session pour maintenir l'état de connexion de l'utilisateur
 session_start();
-// Redirect if already logged in
+
+// Redirection vers le panneau d'administration si l'utilisateur est déjà connecté
 if (isset($_SESSION['admin'])) {
     header("Location: accueil.php");
     exit;
 }
 
+// Inclusion du fichier de connexion à la base de données
 require_once 'db.php';
 $error = '';
 
+// Vérification si le formulaire de connexion a été soumis (requête POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Sécurisation de l'entrée contre les injections SQL et retrait des espaces inutiles
     $username = trim(mysqli_real_escape_string($conn, $_POST['username']));
     $password = $_POST['password'];
 
+    // Recherche de l'utilisateur dans la base de données
     $sql  = "SELECT * FROM admin WHERE username = '$username' LIMIT 1";
     $res  = mysqli_query($conn, $sql);
     $admin = mysqli_fetch_assoc($res);
 
+    // Vérification de l'existence de l'utilisateur ET de la validité du mot de passe (comparaison avec le hash)
     if ($admin && password_verify($password, $admin['password'])) {
+        // Enregistrement de l'utilisateur dans la session
         $_SESSION['admin'] = $admin['username'];
         header("Location: accueil.php");
         exit;
     } else {
+        // Message d'erreur en cas d'échec
         $error = "Identifiant ou mot de passe incorrect.";
     }
 }

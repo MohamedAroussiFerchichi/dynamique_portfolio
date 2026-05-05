@@ -2,7 +2,12 @@
 -- Portfolio Dynamique – Base de données
 -- =============================================
 
+-- Crée la base de données "portfolio" si elle n'existe pas déjà. 
+-- "utf8mb4" permet de stocker tous les caractères (y compris les emojis).
+-- "utf8mb4_unicode_ci" assure un tri insensible à la casse (A = a).
 CREATE DATABASE IF NOT EXISTS portfolio CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- Sélectionne la base de données "portfolio" pour exécuter les commandes suivantes à l'intérieur.
 USE portfolio;
 
 -- Table infos_personnelles
