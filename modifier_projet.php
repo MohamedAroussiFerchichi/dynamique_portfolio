@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin'])) { header("Location: index.php"); exit; }
+if (!isset($_SESSION['admin'])) { header("Location: login.php"); exit; }
 require_once 'db.php';
 include  'menu.php';
 
@@ -76,11 +76,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-row">
                 <div class="form-group">
                     <label>Technologies utilisées</label>
-                    <input type="text" name="technologie" value="<?= htmlspecialchars($projet['technologie']) ?>">
+                    <input type="text" name="technologie" value="<?= htmlspecialchars($projet['technologie']) ?>" required>
                 </div>
                 <div class="form-group">
                     <label>Date du projet</label>
-                    <input type="date" name="date_projet" value="<?= htmlspecialchars($projet['date_projet']) ?>">
+                    <input type="date" name="date_projet" value="<?= htmlspecialchars($projet['date_projet']) ?>" required>
                 </div>
             </div>
             <?php if ($projet['image']): ?>
@@ -91,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
             <div class="form-group">
                 <label>Nouvelle image (laisser vide pour garder l'actuelle)</label>
+                <!-- Retrait du required ici pour permettre la mise à jour sans changer l'image -->
                 <input type="file" name="image" accept=".jpg,.jpeg,.png,.gif,.webp">
             </div>
             <div style="display:flex;gap:1rem">

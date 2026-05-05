@@ -119,6 +119,11 @@ nav {
 
 .nav-actions { display: flex; gap: 0.5rem; align-items: center; }
 
+.user-greeting {
+  font-size:0.8rem;
+  color:var(--text-muted);
+}
+
 /* ── Main Container ────────────────────────────────────────── */
 .container {
   max-width: 1200px;
@@ -716,14 +721,84 @@ footer a:hover { color: var(--accent); }
 .empty-state p { font-size: 1rem; }
 
 /* ── Responsive ────────────────────────────────────────────── */
+
+/* Cacher le bouton Hamburger sur grand écran */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary, #fff); /* Changez si besoin selon votre thème */
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* Sur Ordinateur : le conteneur du menu s'affiche en flex */
+.nav-links-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Ajustez selon l'espace entre vos liens et actions */
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
 @media (max-width: 900px) {
   .hero { flex-direction: column-reverse; text-align: center; gap: 2rem; min-height: auto; }
   .hero-actions, .social-links { justify-content: center; }
   .form-row { grid-template-columns: 1fr; }
+
+    /* 1. On montre le bouton hamburger */
+    .mobile-menu-btn {
+        display: block !important; /* Force display */
+    }
+    
+    /* 2. On cache le conteneur des liens par défaut */
+    .nav-links-container {
+        display: none !important; /* Cache de base (important pour contrer le flex par défaut) */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* S'affiche juste sous la nav */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-secondary) !important; /* Utilise votre couleur de fond foncée */
+        padding: 1.5rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        border-bottom: 1px solid var(--border);
+    }
+
+    /* 3. La classe .show affichera le menu */
+    .nav-links-container.show {
+        display: flex !important; /* Devient visible quand le JS ajoute la classe */
+    }
+
+    /* 4. On réorganise les liens pour qu'ils utilisent tout l'espace */
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        width: 100%; /* Les boutons prennent toute la largeur en mobile */
+        justify-content: center;
+        padding: 1rem;
+    }
+    
+    /* 5. On centre le bloc admin/logout */
+    .nav-actions {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .user-greeting {
+        margin: 0 0 10px 0;
+        text-align: center;
+    }
 }
 
 @media (max-width: 600px) {
-  .nav-links { display: none; }
   .container { padding: 1.5rem 1rem; }
   .form-card { padding: 1.5rem; }
   .auth-card { padding: 2rem 1.5rem; }

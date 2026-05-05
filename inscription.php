@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <hr class="divider">
         <p style="font-size:0.85rem;color:var(--text-muted)">
-            Déjà un compte ? <a href="index.php">Se connecter</a>
+            Déjà un compte ? <a href="login.php">Se connecter</a>
         </p>
     </div>
 </div>

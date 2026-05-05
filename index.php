@@ -1,77 +1,94 @@
 <?php
-// Démarrage de la session pour maintenir l'état de connexion de l'utilisateur
-session_start();
-
-// Redirection vers le panneau d'administration si l'utilisateur est déjà connecté
-if (isset($_SESSION['admin'])) {
-    header("Location: accueil.php");
-    exit;
-}
-
-// Inclusion du fichier de connexion à la base de données
 require_once 'db.php';
-$error = '';
+include  'menu.php';
 
-// Vérification si le formulaire de connexion a été soumis (requête POST)
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Sécurisation de l'entrée contre les injections SQL et retrait des espaces inutiles
-    $username = trim(mysqli_real_escape_string($conn, $_POST['username']));
-    $password = $_POST['password'];
-
-    // Recherche de l'utilisateur dans la base de données
-    $sql  = "SELECT * FROM admin WHERE username = '$username' LIMIT 1";
-    $res  = mysqli_query($conn, $sql);
-    $admin = mysqli_fetch_assoc($res);
-
-    // Vérification de l'existence de l'utilisateur ET de la validité du mot de passe (comparaison avec le hash)
-    if ($admin && password_verify($password, $admin['password'])) {
-        // Enregistrement de l'utilisateur dans la session
-        $_SESSION['admin'] = $admin['username'];
-        header("Location: accueil.php");
-        exit;
-    } else {
-        // Message d'erreur en cas d'échec
-        $error = "Identifiant ou mot de passe incorrect.";
-    }
-}
+// Fetch personal info
+$info = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM infos_personnelles LIMIT 1"));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion – Portfolio Admin</title>
+    <title>Accueil – Portfolio</title>
+    <meta name="description" content="Portfolio personnel dynamique – Développeur Full Stack">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="auth-wrapper">
-    <div class="auth-card">
-        <div class="auth-logo">⚡ Portfolio</div>
-        <p class="auth-subtitle">Connectez-vous pour accéder au panneau d'administration</p>
 
-        <?php if ($error): ?>
-            <div class="alert alert-danger">❌ <?= htmlspecialchars($error) ?></div>
-        <?php endif; ?>
+<div class="container">
+    <section class="hero">
 
-        <form method="POST" action="">
-            <div class="form-group" style="text-align:left">
-                <label>Nom d'utilisateur</label>
-                <input type="text" name="username" placeholder="ex: admin" required autocomplete="username">
+        <div class="hero-text animate-in">
+            <div class="hero-badge">✨ Disponible pour des projets</div>
+            <h1>
+                Bonjour, je suis<br>
+                <span class="gradient-text">
+                    <?= $info ? htmlspecialchars($info['prenom'] . ' ' . $info['nom']) : 'Votre Nom' ?>
+                </span>
+            </h1>
+            <p class="hero-desc">
+                <?= $info && $info['description']
+                    ? htmlspecialchars($info['description'])
+                    : 'Développeur passionné par la création de solutions numériques innovantes.' ?>
+            </p>
+            <div class="hero-actions">
+                <a href="projets.php" class="btn btn-primary">🚀 Voir mes projets</a>
+                <a href="contact.php" class="btn btn-secondary">✉️ Me contacter</a>
             </div>
-            <div class="form-group" style="text-align:left">
-                <label>Mot de passe</label>
-                <input type="password" name="password" placeholder="••••••••" required autocomplete="current-password">
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem">
-                🔐 Se connecter
-            </button>
-        </form>
 
-        <hr class="divider">
-        <p style="font-size:0.85rem;color:var(--text-muted)">
-            Pas encore de compte ? <a href="inscription.php">Créer un compte admin</a>
-        </p>
+            <!-- Liens sociaux -->
+            <div class="social-links">
+                <?php if ($info && $info['linkedin']): ?>
+                <a href="<?= htmlspecialchars($info['linkedin']) ?>" target="_blank" class="social-btn">
+                    <span class="icon">💼</span> LinkedIn
+                </a>
+                <?php endif; ?>
+                <?php if ($info && $info['github']): ?>
+                <a href="<?= htmlspecialchars($info['github']) ?>" target="_blank" class="social-btn">
+                    <span class="icon">🐙</span> GitHub
+                </a>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="hero-image animate-in">
+            <?php if ($info && $info['photo']): ?>
+                <img src="fichiers/<?= htmlspecialchars($info['photo']) ?>" alt="Photo de profil">
+            <?php else: ?>
+                <div style="width:300px;height:300px;background:var(--accent-grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:6rem;box-shadow:var(--shadow)">
+                    👤
+                </div>
+            <?php endif; ?>
+        </div>
+
+    </section>
+
+    <!-- Stats rapides -->
+    <?php
+    $nb_projets = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM projets"));
+    $nb_certs   = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM certificats"));
+    ?>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin:2rem 0 3rem">
+        <div class="info-block" style="text-align:center">
+            <div style="font-size:2.5rem;font-weight:800;background:var(--accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"><?= $nb_projets ?></div>
+            <div style="color:var(--text-secondary);font-size:0.9rem;margin-top:0.5rem">Projets réalisés</div>
+        </div>
+        <div class="info-block" style="text-align:center">
+            <div style="font-size:2.5rem;font-weight:800;background:var(--accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"><?= $nb_certs ?></div>
+            <div style="color:var(--text-secondary);font-size:0.9rem;margin-top:0.5rem">Certificats obtenus</div>
+        </div>
+        <div class="info-block" style="text-align:center">
+            <div style="font-size:2.5rem;font-weight:800;background:var(--accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">∞</div>
+            <div style="color:var(--text-secondary);font-size:0.9rem;margin-top:0.5rem">Passion pour le code</div>
+        </div>
     </div>
+
 </div>
+
+<footer>
+    <p>© <?= date('Y') ?> <?= $info ? htmlspecialchars($info['prenom'].' '.$info['nom']) : 'Portfolio' ?> – Tous droits réservés</p>
+</footer>
+
 </body>
 </html>

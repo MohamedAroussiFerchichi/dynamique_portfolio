@@ -4,7 +4,7 @@ session_start();
 
 // 2. Sécurité : Vérifier si l'utilisateur est bien connecté en tant qu'admin.
 // S'il ne l'est pas, on le redirige immédiatement vers la page de connexion.
-if (!isset($_SESSION['admin'])) { header("Location: index.php"); exit; }
+if (!isset($_SESSION['admin'])) { header("Location: login.php"); exit; }
 
 // 3. Inclusion de la base de données et de la barre de navigation
 require_once 'db.php';
@@ -104,17 +104,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-row">
                 <div class="form-group">
                     <label>Technologies utilisées</label>
-                    <input type="text" name="technologie" placeholder="ex: PHP, MySQL, Bootstrap">
+                    <input type="text" name="technologie" placeholder="ex: PHP, MySQL, Bootstrap" required>
                 </div>
                 <div class="form-group">
                     <label>Date du projet</label>
-                    <input type="date" name="date_projet">
+                    <input type="date" name="date_projet" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Image du projet (JPG, PNG, WEBP)</label>
                 <!-- accept limite les types de fichiers sélectionnables par l'utilisateur dans l'explorateur -->
-                <input type="file" name="image" accept=".jpg,.jpeg,.png,.gif,.webp">
+                <input type="file" name="image" accept=".jpg,.jpeg,.png,.gif,.webp" required>
             </div>
             <div style="display:flex;gap:1rem">
                 <button type="submit" class="btn btn-primary">💾 Enregistrer</button>

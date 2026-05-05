@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin'])) { header("Location: index.php"); exit; }
+if (!isset($_SESSION['admin'])) { header("Location: login.php"); exit; }
 require_once 'db.php';
 include  'menu.php';
 
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-row">
                 <div class="form-group">
                     <label>Date d'obtention</label>
-                    <input type="date" name="date_obtention">
+                    <input type="date" name="date_obtention" required>
                 </div>
                 <div class="form-group">
                     <label>Fichier (PDF ou Image) *</label>

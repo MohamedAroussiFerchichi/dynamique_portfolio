@@ -80,7 +80,6 @@ if ($is_admin && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_c
                 <h3>🔗 Liens</h3>
                 <?php if ($info && $info['linkedin']): ?><a href="<?= htmlspecialchars($info['linkedin']) ?>" target="_blank" class="social-btn" style="width:100%;justify-content:center;margin-bottom:0.5rem">💼 LinkedIn</a><?php endif; ?>
                 <?php if ($info && $info['github']): ?><a href="<?= htmlspecialchars($info['github']) ?>" target="_blank" class="social-btn" style="width:100%;justify-content:center;margin-bottom:0.5rem">🐙 GitHub</a><?php endif; ?>
-                <?php if ($info && $info['site_perso']): ?><a href="<?= htmlspecialchars($info['site_perso']) ?>" target="_blank" class="social-btn" style="width:100%;justify-content:center">🌐 Site Web</a><?php endif; ?>
             </div>
         </div>
 

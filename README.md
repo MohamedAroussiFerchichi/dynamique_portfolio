@@ -70,7 +70,6 @@ Créer un portfolio personnel dynamique avec :
 - cv (VARCHAR 255)  
 - linkedin (VARCHAR 255)  
 - github (VARCHAR 255)  
-- site_perso (VARCHAR 255)  
 
 ### Table `admin`
 - id (INT PK AI)  
@@ -89,14 +88,14 @@ Créer un portfolio personnel dynamique avec :
   *(folder for uploaded files like CVs and certificates)*  
 
 ### Fichiers PHP
-- `accueil.php`  
+- `index.php`  
 - `ajouter_certificat.php`  
 - `ajouter_projet.php`  
 - `apropos.php`  
 - `certificats.php`  
 - `contact.php`  
 - `db.php`  
-- `index.php`  
+- `login.php`  
 - `inscription.php`  
 - `menu.php`  
 - `modifier_certificat.php`  
@@ -118,7 +117,7 @@ Créer un portfolio personnel dynamique avec :
   Stocker le fichier dans `/fichiers/` et enregistrer le nom du fichier dans la table `certificats`.  
 
 - **Liens LinkedIn / GitHub / Site**  
-  Dans `infos_personnelles`, ajouter champs `linkedin`, `github`, `site_perso`.  
+  Dans `infos_personnelles`, ajouter champs `linkedin`, `github`,.  
   Afficher sous forme de boutons ou liens cliquables sur la page d’accueil.  
 
 ---

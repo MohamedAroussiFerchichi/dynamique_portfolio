@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin'])) { header("Location: index.php"); exit; }
+if (!isset($_SESSION['admin'])) { header("Location: login.php"); exit; }
 require_once 'db.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;

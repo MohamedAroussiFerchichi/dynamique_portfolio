@@ -6,7 +6,7 @@ session_start();
 session_destroy();
 
 // 3. On redirige l'utilisateur vers la page de connexion
-header("Location: index.php");
+header("Location: login.php");
 
 // 4. On arrête l'exécution du script par sécurité après une redirection
 exit;

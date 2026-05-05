@@ -11,11 +11,11 @@
 *   `db.php` contains the connection logic (`mysqli_connect`) that links the PHP application to the MySQL database, centralizing the configuration.
 
 ## Step 3: Security & Authentication
-*   **Core Files:** `index.php`, `inscription.php`, `logout.php`.
+*   **Core Files:** `login.php`, `inscription.php`, `logout.php`.
 *   **Authentication Flow:** 
-    *   `index.php` checks if a user is already logged in using `$_SESSION['admin']`.
+    *   `login.php` checks if a user is already logged in using `$_SESSION['admin']`.
     *   When an admin registers (`inscription.php`), passwords are cryptographically hashed (e.g., `password_hash()`) before entering the database.
-    *   During login (`index.php`), the system verifies the password against the hash using `password_verify()`.
+    *   During login (`login.php`), the system verifies the password against the hash using `password_verify()`.
     *   `session_start()` initiates the session to keep the user authenticated across different protected pages.
     *   **SQL Injection Prevention:** Input data is sanitized using `mysqli_real_escape_string()` before being queried.
 
@@ -36,8 +36,8 @@ The application manages data through Create, Read, Update, and Delete operations
 
 ## Step 6: Live Demonstration Plan
 1.  **Database View:** Show the structure of the database tables in PhpMyAdmin.
-2.  **Failed Login test:** Start at the login page (`index.php`) and enter an incorrect password to demonstrate error handling.
-3.  **Successful Login:** Log in with correct credentials to reach the dashboard (`accueil.php`).
+2.  **Failed Login test:** Start at the login page (`login.php`) and enter an incorrect password to demonstrate error handling.
+3.  **Successful Login:** Log in with correct credentials to reach the dashboard (`index.php`).
 4.  **Creation:** Navigate to the Projects/Certificates page and add a new test entry.
 5.  **Modification:** Edit the newly created entry to demonstrate the UPDATE functionality.
 6.  **Deletion:** Delete the entry to demonstrate the DELETE functionality.

@@ -19,9 +19,7 @@ CREATE TABLE IF NOT EXISTS infos_personnelles (
     photo VARCHAR(255),
     cv VARCHAR(255),
     linkedin VARCHAR(255),
-    github VARCHAR(255),
-    site_perso VARCHAR(255)
-);
+    github VARCHAR(255));
 
 -- Table projets
 CREATE TABLE IF NOT EXISTS projets (
@@ -58,11 +56,10 @@ CREATE TABLE IF NOT EXISTS admin (
 );
 
 -- Données de démo pour infos_personnelles
-INSERT INTO infos_personnelles (nom, prenom, description, linkedin, github, site_perso) VALUES (
+INSERT INTO infos_personnelles (nom, prenom, description, linkedin, github) VALUES (
     'Doe',
     'John',
     'Développeur Full Stack passionné par les nouvelles technologies, avec une expertise en PHP, JavaScript, et les bases de données relationnelles.',
     'https://linkedin.com',
-    'https://github.com',
-    'https://monsite.com'
+    'https://github.com'
 );
