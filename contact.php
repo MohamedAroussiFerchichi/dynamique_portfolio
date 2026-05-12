@@ -66,7 +66,6 @@ if ($is_admin) {
             <!-- ========================================== -->
             <?php if (mysqli_num_rows($messages) === 0): ?>
                 <div class="empty-state">
-                    <div class="empty-icon">📭</div>
                     <p>Aucun message reçu pour le moment.</p>
                 </div>
             <?php else: ?>
@@ -78,11 +77,11 @@ if ($is_admin) {
                                 <div>
                                     <h3 style="margin:0; font-size:1.2rem; color:var(--text-primary)"><?= htmlspecialchars($msg['nom']) ?></h3>
                                     <a href="mailto:<?= htmlspecialchars($msg['email']) ?>" style="color:var(--primary-color); font-size:0.9rem; text-decoration:none;">
-                                        ✉️ <?= htmlspecialchars($msg['email']) ?>
+                                        <?= htmlspecialchars($msg['email']) ?>
                                     </a>
                                 </div>
                                 <div style="color:var(--text-muted); font-size:0.85rem; background:rgba(255,255,255,0.05); padding:0.3rem 0.6rem; border-radius:4px;">
-                                    📅 <?= date('d/m/Y - H:i', strtotime($msg['date_envoi'])) ?>
+                                    <?= date('d/m/Y - H:i', strtotime($msg['date_envoi'])) ?>
                                 </div>
                             </div>
                             <div style="color:var(--text-secondary); line-height:1.6; white-space:pre-wrap;"><?= htmlspecialchars($msg['message']) ?></div>
@@ -98,16 +97,16 @@ if ($is_admin) {
             <!-- ========================================== -->
             <?php if ($success): ?>
                 <div class="alert alert-success" style="font-size:1rem;padding:1.25rem">
-                    ✅ <?= htmlspecialchars($success) ?>
+                    <?= htmlspecialchars($success) ?>
                 </div>
             <?php endif; ?>
             <?php if ($error): ?>
-                <div class="alert alert-danger">❌ <?= htmlspecialchars($error) ?></div>
+                <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
             <?php endif; ?>
 
             <?php if (!$success): ?>
             <div class="form-card animate-in">
-                <h2>✉️ Envoyer un message</h2>
+                <h2>Envoyer un message</h2>
                 <p class="subtitle">Je vous répondrai dès que possible</p>
                 <form method="POST" action="">
                     <div class="form-row">
@@ -127,7 +126,7 @@ if ($is_admin) {
                         <textarea name="message" placeholder="Décrivez votre projet ou votre demande..." required><?= isset($_POST['message']) ? htmlspecialchars($_POST['message']) : '' ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
-                        🚀 Envoyer le message
+                        Envoyer le message
                     </button>
                 </form>
             </div>
@@ -136,15 +135,12 @@ if ($is_admin) {
             <!-- Infos rapides -->
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:2rem">
                 <div class="info-block" style="text-align:center">
-                    <div style="font-size:2rem;margin-bottom:0.5rem">📧</div>
                     <div style="font-size:0.85rem;color:var(--text-secondary)">Email disponible sur LinkedIn</div>
                 </div>
                 <div class="info-block" style="text-align:center">
-                    <div style="font-size:2rem;margin-bottom:0.5rem">⚡</div>
                     <div style="font-size:0.85rem;color:var(--text-secondary)">Réponse sous 24–48h</div>
                 </div>
                 <div class="info-block" style="text-align:center">
-                    <div style="font-size:2rem;margin-bottom:0.5rem">🤝</div>
                     <div style="font-size:0.85rem;color:var(--text-secondary)">Freelance & missions courtes</div>
                 </div>
             </div>

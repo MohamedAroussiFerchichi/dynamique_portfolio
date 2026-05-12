@@ -46,11 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div class="auth-wrapper">
     <div class="auth-card">
-        <div class="auth-logo">⚡ Portfolio</div>
+        <div class="auth-logo">Portfolio</div>
         <p class="auth-subtitle">Connectez-vous pour accéder au panneau d'administration</p>
 
         <?php if ($error): ?>
-            <div class="alert alert-danger">❌ <?= htmlspecialchars($error) ?></div>
+            <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
         <form method="POST" action="">
@@ -63,12 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="password" placeholder="••••••••" required autocomplete="current-password">
             </div>
             <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem">
-                🔐 Se connecter
+                Se connecter
             </button>
 
             <div style="text-align:center; margin-top:1rem;">
                 <a href="index.php" style="color:var(--text-muted); font-size:0.9rem; text-decoration:none;">
-                    👁️ Continuer en tant qu'invité
+                    Continuer en tant qu'invité
                 </a>
             </div>
         </form>

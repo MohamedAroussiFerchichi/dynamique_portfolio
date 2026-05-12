@@ -79,12 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container">
     <div class="page-header">
-        <h1>➕ Ajouter un Projet</h1>
+        <h1>Ajouter un Projet</h1>
     </div>
 
     <!-- Affichage des messages de succès ou d'erreur -->
-    <?php if ($success): ?><div class="alert alert-success">✅ <?= htmlspecialchars($success) ?> <a href="projets.php">← Voir les projets</a></div><?php endif; ?>
-    <?php if ($error):   ?><div class="alert alert-danger">❌ <?= htmlspecialchars($error) ?></div><?php endif; ?>
+    <?php if ($success): ?><div class="alert alert-success"><?= htmlspecialchars($success) ?> <a href="projets.php">← Voir les projets</a></div><?php endif; ?>
+    <?php if ($error):   ?><div class="alert alert-danger"><?= htmlspecialchars($error) ?></div><?php endif; ?>
 
     <div class="form-card">
         <!-- 
@@ -103,21 +103,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>Technologies utilisées</label>
+                    <label>Technologies utilisées *</label>
                     <input type="text" name="technologie" placeholder="ex: PHP, MySQL, Bootstrap" required>
                 </div>
                 <div class="form-group">
-                    <label>Date du projet</label>
+                    <label>Date du projet *</label>
                     <input type="date" name="date_projet" required>
                 </div>
             </div>
             <div class="form-group">
-                <label>Image du projet (JPG, PNG, WEBP)</label>
+                <label>Image du projet (JPG, PNG, WEBP) *</label>
                 <!-- accept limite les types de fichiers sélectionnables par l'utilisateur dans l'explorateur -->
                 <input type="file" name="image" accept=".jpg,.jpeg,.png,.gif,.webp" required>
             </div>
             <div style="display:flex;gap:1rem">
-                <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
                 <!-- Le bouton annuler redirige simplement vers la liste des projets -->
                 <a href="projets.php" class="btn btn-secondary">Annuler</a>
             </div>

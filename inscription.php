@@ -60,16 +60,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div class="auth-wrapper">
     <div class="auth-card" style="max-width:480px">
-        <div class="auth-logo">🔑 Inscription</div>
+        <div class="auth-logo">Inscription</div>
         <p class="auth-subtitle">Créer un compte administrateur</p>
 
         <?php if ($success): ?>
-            <div class="alert alert-success">✅ <?= htmlspecialchars($success) ?>
-                <br><a href="index.php" class="btn btn-primary btn-sm" style="margin-top:0.75rem">Se connecter</a>
+            <div class="alert alert-success"><?= htmlspecialchars($success) ?>
+                <br><a href="login.php" class="btn btn-primary btn-sm" style="margin-top:0.75rem">Se connecter</a>
             </div>
         <?php endif; ?>
         <?php if ($error): ?>
-            <div class="alert alert-danger">❌ <?= htmlspecialchars($error) ?></div>
+            <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
         <?php if (!$success): ?>
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="confirm" required minlength="6" placeholder="Répétez le mot de passe">
             </div>
             <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
-                ✅ Créer le compte
+                Créer le compte
             </button>
         </form>
         <?php endif; ?>

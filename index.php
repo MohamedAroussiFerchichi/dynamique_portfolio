@@ -20,7 +20,7 @@ $info = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM infos_personnelles
     <section class="hero">
 
         <div class="hero-text animate-in">
-            <div class="hero-badge">✨ Disponible pour des projets</div>
+            <div class="hero-badge">Disponible pour de nouveaux projets</div>
             <h1>
                 Bonjour, je suis<br>
                 <span class="gradient-text">
@@ -33,20 +33,20 @@ $info = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM infos_personnelles
                     : 'Développeur passionné par la création de solutions numériques innovantes.' ?>
             </p>
             <div class="hero-actions">
-                <a href="projets.php" class="btn btn-primary">🚀 Voir mes projets</a>
-                <a href="contact.php" class="btn btn-secondary">✉️ Me contacter</a>
+                <a href="projets.php" class="btn btn-primary">Voir mes projets</a>
+                <a href="contact.php" class="btn btn-secondary">Me contacter</a>
             </div>
 
             <!-- Liens sociaux -->
             <div class="social-links">
                 <?php if ($info && $info['linkedin']): ?>
                 <a href="<?= htmlspecialchars($info['linkedin']) ?>" target="_blank" class="social-btn">
-                    <span class="icon">💼</span> LinkedIn
+                    LinkedIn
                 </a>
                 <?php endif; ?>
                 <?php if ($info && $info['github']): ?>
                 <a href="<?= htmlspecialchars($info['github']) ?>" target="_blank" class="social-btn">
-                    <span class="icon">🐙</span> GitHub
+                    GitHub
                 </a>
                 <?php endif; ?>
             </div>
@@ -56,9 +56,7 @@ $info = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM infos_personnelles
             <?php if ($info && $info['photo']): ?>
                 <img src="fichiers/<?= htmlspecialchars($info['photo']) ?>" alt="Photo de profil">
             <?php else: ?>
-                <div style="width:300px;height:300px;background:var(--accent-grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:6rem;box-shadow:var(--shadow)">
-                    👤
-                </div>
+                <img src="fichiers/profile.png" alt="Photo de profil par défaut">
             <?php endif; ?>
         </div>
 
@@ -79,7 +77,7 @@ $info = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM infos_personnelles
             <div style="color:var(--text-secondary);font-size:0.9rem;margin-top:0.5rem">Certificats obtenus</div>
         </div>
         <div class="info-block" style="text-align:center">
-            <div style="font-size:2.5rem;font-weight:800;background:var(--accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">∞</div>
+            <div style="font-size:2.5rem;font-weight:800;background:var(--accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">100%</div>
             <div style="color:var(--text-secondary);font-size:0.9rem;margin-top:0.5rem">Passion pour le code</div>
         </div>
     </div>

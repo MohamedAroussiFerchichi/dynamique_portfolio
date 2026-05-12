@@ -15,7 +15,9 @@ $is_admin = isset($_SESSION['admin']);
 ?>
 <nav>
     <div class="nav-inner">
-        <a href="index.php" class="nav-brand">⚡ Portfolio</a>
+        <a href="index.php" class="nav-brand">
+            ⚡ Portfolio
+        </a>
         
         <!-- Le bouton Hamburger pour mobile -->
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Ouvrir le menu">
@@ -30,11 +32,11 @@ $is_admin = isset($_SESSION['admin']);
                 On vérifie si la page actuelle ($current) correspond au lien. 
                 Si c'est le cas, on ajoute la classe CSS 'active' pour mettre le bouton en surbrillance.
                 -->
-                <li><a href="index.php"   class="<?= $current=='index.php'    ? 'active':'' ?>">🏠 Accueil</a></li>
-                <li><a href="apropos.php"   class="<?= $current=='apropos.php'    ? 'active':'' ?>">👤 À propos</a></li>
-                <li><a href="projets.php"   class="<?= $current=='projets.php'    ? 'active':'' ?>">🚀 Projets</a></li>
-                <li><a href="certificats.php" class="<?= $current=='certificats.php' ? 'active':'' ?>">🏆 Certificats</a></li>
-                <li><a href="contact.php"   class="<?= $current=='contact.php'    ? 'active':'' ?>">✉️ Contact</a></li>
+                <li><a href="index.php"   class="<?= $current=='index.php'    ? 'active':'' ?>">Accueil</a></li>
+                <li><a href="apropos.php"   class="<?= $current=='apropos.php'    ? 'active':'' ?>">À propos</a></li>
+                <li><a href="projets.php"   class="<?= $current=='projets.php'    ? 'active':'' ?>">Projets</a></li>
+                <li><a href="certificats.php" class="<?= $current=='certificats.php' ? 'active':'' ?>">Certificats</a></li>
+                <li><a href="contact.php"   class="<?= $current=='contact.php'    ? 'active':'' ?>">Contact</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -47,11 +49,8 @@ $is_admin = isset($_SESSION['admin']);
                     du code JavaScript malveillant (ex: <script>...</script>). C'est ce qu'on appelle 
                     une attaque XSS (Cross-Site Scripting). htmlspecialchars() désamorce ce code.
                     -->
-                    <span class="user-greeting">👋 <?= htmlspecialchars($_SESSION['admin']) ?></span>
+                    <span class="user-greeting">Bonjour, <?= htmlspecialchars($_SESSION['admin']) ?></span>
                     <a href="logout.php" class="btn btn-secondary btn-sm">Déconnexion</a>
-                <?php else: ?>
-                    <!-- Si l'utilisateur n'est pas connecté, on affiche le bouton pour aller à la page de login de l'administration -->
-                    <a href="login.php" class="btn btn-primary btn-sm">🔐 Admin</a>
                 <?php endif; ?>
             </div>
         </div>

@@ -55,16 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container">
     <div class="page-header">
-        <h1>🏆 Ajouter un Certificat</h1>
+        <h1>Ajouter un Certificat</h1>
     </div>
 
     <?php if ($success): ?>
-        <div class="alert alert-success">✅ <?= htmlspecialchars($success) ?>
+        <div class="alert alert-success"><?= htmlspecialchars($success) ?>
             <a href="certificats.php" style="margin-left:1rem">← Voir les certificats</a>
         </div>
     <?php endif; ?>
     <?php if ($error): ?>
-        <div class="alert alert-danger">❌ <?= htmlspecialchars($error) ?></div>
+        <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
     <div class="form-card">
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>Date d'obtention</label>
+                    <label>Date d'obtention *</label>
                     <input type="date" name="date_obtention" required>
                 </div>
                 <div class="form-group">
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             <div style="display:flex;gap:1rem;margin-top:0.5rem">
-                <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
                 <a href="certificats.php" class="btn btn-secondary">Annuler</a>
             </div>
         </form>

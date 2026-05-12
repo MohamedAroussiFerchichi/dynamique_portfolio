@@ -30,7 +30,7 @@ $projets  = mysqli_query($conn, "SELECT * FROM projets ORDER BY date_projet DESC
     <!-- 4. Affichage conditionnel : Le bouton "Ajouter" n'est visible que pour l'admin -->
     <?php if ($is_admin): ?>
     <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem">
-        <a href="ajouter_projet.php" class="btn btn-primary">➕ Ajouter un projet</a>
+        <a href="ajouter_projet.php" class="btn btn-primary">Ajouter un projet</a>
     </div>
     <?php endif; ?>
 
@@ -38,9 +38,8 @@ $projets  = mysqli_query($conn, "SELECT * FROM projets ORDER BY date_projet DESC
     <?php if (mysqli_num_rows($projets) === 0): ?>
         <!-- Si le nombre de lignes retournées est 0, on affiche un message d'état vide -->
         <div class="empty-state">
-            <div class="empty-icon">🚀</div>
             <p>Aucun projet pour le moment.</p>
-            <?php if ($is_admin): ?><a href="ajouter_projet.php" class="btn btn-primary" style="margin-top:1rem">➕ Ajouter votre premier projet</a><?php endif; ?>
+            <?php if ($is_admin): ?><a href="ajouter_projet.php" class="btn btn-primary" style="margin-top:1rem">Ajouter votre premier projet</a><?php endif; ?>
         </div>
     <?php else: ?>
     <!-- 6. S'il y a des projets, on crée grid pour les afficher -->
@@ -55,7 +54,7 @@ $projets  = mysqli_query($conn, "SELECT * FROM projets ORDER BY date_projet DESC
             <?php if ($p['image']): ?>
                 <img class="card-img" src="fichiers/<?= htmlspecialchars($p['image']) ?>" alt="<?= htmlspecialchars($p['titre']) ?>">
             <?php else: ?>
-                <div class="card-img-placeholder">🚀</div>
+                <div class="card-img-placeholder" style="background:#f4f4f4; color:#ccc;">Projet</div>
             <?php endif; ?>
 
             <div class="card-body">
@@ -70,7 +69,7 @@ $projets  = mysqli_query($conn, "SELECT * FROM projets ORDER BY date_projet DESC
                 <!-- Formatage de la date (conversion du format SQL YYYY-MM-DD en DD/MM/YYYY) -->
                 <?php if ($p['date_projet']): ?>
                 <div class="card-meta">
-                    📅 <?= date('d/m/Y', strtotime($p['date_projet'])) ?>
+                    <?= date('d/m/Y', strtotime($p['date_projet'])) ?>
                 </div>
                 <?php endif; ?>
             </div>
@@ -79,11 +78,11 @@ $projets  = mysqli_query($conn, "SELECT * FROM projets ORDER BY date_projet DESC
             <?php if ($is_admin): ?>
             <div class="card-actions">
                 <!-- On passe l'identifiant (id) du projet dans l'URL (méthode GET) pour savoir quel projet modifier/supprimer -->
-                <a href="modifier_projet.php?id=<?= $p['id'] ?>" class="btn btn-secondary btn-sm">✏️ Modifier</a>
+                <a href="modifier_projet.php?id=<?= $p['id'] ?>" class="btn btn-secondary btn-sm">Modifier</a>
                 
                 <!-- L'attribut onclick demande une confirmation JavaScript avant de supprimer -->
                 <a href="supprimer_projet.php?id=<?= $p['id'] ?>" class="btn btn-danger btn-sm"
-                    onclick="return confirm('Supprimer ce projet ?')">🗑️ Supprimer</a>
+                    onclick="return confirm('Supprimer ce projet ?')">Supprimer</a>
             </div>
             <?php endif; ?>
         </div>

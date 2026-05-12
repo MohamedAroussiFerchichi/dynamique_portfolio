@@ -57,11 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container">
     <div class="page-header">
-        <h1>✏️ Modifier le Projet</h1>
+        <h1>Modifier le Projet</h1>
     </div>
 
-    <?php if ($success): ?><div class="alert alert-success">✅ <?= htmlspecialchars($success) ?> <a href="projets.php">← Retour aux projets</a></div><?php endif; ?>
-    <?php if ($error):   ?><div class="alert alert-danger">❌ <?= htmlspecialchars($error) ?></div><?php endif; ?>
+    <?php if ($success): ?><div class="alert alert-success"><?= htmlspecialchars($success) ?> <a href="projets.php">← Retour aux projets</a></div><?php endif; ?>
+    <?php if ($error):   ?><div class="alert alert-danger"><?= htmlspecialchars($error) ?></div><?php endif; ?>
 
     <div class="form-card">
         <form method="POST" enctype="multipart/form-data">
@@ -75,11 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>Technologies utilisées</label>
+                    <label>Technologies utilisées *</label>
                     <input type="text" name="technologie" value="<?= htmlspecialchars($projet['technologie']) ?>" required>
                 </div>
                 <div class="form-group">
-                    <label>Date du projet</label>
+                    <label>Date du projet *</label>
                     <input type="date" name="date_projet" value="<?= htmlspecialchars($projet['date_projet']) ?>" required>
                 </div>
             </div>
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="file" name="image" accept=".jpg,.jpeg,.png,.gif,.webp">
             </div>
             <div style="display:flex;gap:1rem">
-                <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
                 <a href="projets.php" class="btn btn-secondary">Annuler</a>
             </div>
         </form>

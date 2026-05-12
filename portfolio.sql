@@ -56,10 +56,11 @@ CREATE TABLE IF NOT EXISTS admin (
 );
 
 -- Données de démo pour infos_personnelles
-INSERT INTO infos_personnelles (nom, prenom, description, linkedin, github) VALUES (
-    'Doe',
-    'John',
+INSERT INTO infos_personnelles (nom, prenom, description, linkedin, github, photo) VALUES (
+    'Mohamed',
+    'Amine Chelbi',
     'Développeur Full Stack passionné par les nouvelles technologies, avec une expertise en PHP, JavaScript, et les bases de données relationnelles.',
     'https://linkedin.com',
-    'https://github.com'
+    'https://github.com',
+    'profile.png'
 );
